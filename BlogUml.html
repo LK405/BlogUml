@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UML - Lenguaje Unificado de Modelado</title>
+  <meta name="description" content="Blog académico sobre UML con ejemplos reales, diagramas y formato profesional para GitHub Pages." />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: 'default' });
+  </script>
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --text:#1f2937;
+      --muted:#5b6472;
+      --line:#d8e0ea;
+      --accent:#0f766e;
+      --accent2:#2563eb;
+      --shadow:0 10px 28px rgba(15,23,42,.08);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.7;
+    }
+    header{
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#fff;
+      padding:28px 0 44px;
+    }
+    .wrap{
+      max-width:1120px;
+      margin:0 auto;
+      padding:0 20px;
+    }
+    .course-box{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:var(--radius);
+      padding:22px;
+      backdrop-filter: blur(4px);
+    }
+    .course-box h1{
+      margin:0 0 10px;
+      font-size:2rem;
+    }
+    .course-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:14px;
+    }
+    .field{
+      background:rgba(255,255,255,.12);
+      padding:14px 16px;
+      border-radius:14px;
+    }
+    .field span{
+      display:block;
+      font-size:.82rem;
+      opacity:.85;
+      margin-bottom:4px;
+      letter-spacing:.3px;
+      text-transform:uppercase;
+    }
+    .field strong{font-size:1rem}
+    nav{
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:#0b1220;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    nav .wrap{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      padding:12px 20px;
+    }
+    nav a{
+      color:#e5eefc;
+      text-decoration:none;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:.95rem;
+      background:rgba(255,255,255,.06);
+    }
+    nav a:hover{background:rgba(255,255,255,.15)}
+    main{padding:34px 0 56px}
+    section{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:26px;
+      margin:18px 0;
+    }
+    h2{margin-top:0}
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+    .box{
+      background:#f9fbff;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:18px;
+    }
+    .img{
+      width:100%;
+      border-radius:16px;
+      border:1px solid var(--line);
+      margin:10px 0;
+      box-shadow:0 8px 22px rgba(15,23,42,.06);
+    }
+    .caption{font-size:.92rem;color:var(--muted);margin-top:6px}
+    table{
+      width:100%;
+      border-collapse:collapse;
+      overflow:hidden;
+      border-radius:14px;
+      margin-top:10px;
+    }
+    th,td{
+      border:1px solid var(--line);
+      padding:12px;
+      vertical-align:top;
+      text-align:left;
+    }
+    th{background:#edf4ff}
+    ul{padding-left:20px}
+    .mermaid{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px;
+      overflow:auto;
+    }
+    footer{
+      padding:24px 0 44px;
+      color:var(--muted);
+      text-align:center;
+    }
+    @media (max-width:800px){
+      .course-grid,.grid{grid-template-columns:1fr}
+      h1{font-size:1.6rem}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <div class="course-box">
+        <h1>Universidad Mariano Galvez de Guatemala</h1>
+        <div class="course-grid">
+          <div class="field"><span>Curso</span><strong>Analisis de Sistemas II</strong></div>
+          <div class="field"><span>Catedrático</span><strong>Ing. Carlos Godinez </strong></div>
+          <div class="field"><span>Semestre</span><strong>8vo semestre</strong></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <div class="wrap">
+      <a href="#intro">Introducción</a>
+      <a href="#definicion">Definición</a> 
+      <a href="#diagramas">Diagramas</a>
+      <a href="#ejemplo">Ejemplo</a>
+      <a href="#mermaid">Mermaid</a>
+      <a href="#ventajas">Ventajas</a>
+      <a href="#conclusion">Conclusión</a>
+      <a href="#referencias">Referencias</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+
+    <section id="intro">
+      <h2>Introducción</h2>
+      <p>UML es una forma visual de explicar cómo funciona un sistema antes de escribir código. Se usa mucho en ingeniería de software porque permite ordenar ideas, describir procesos y mostrar relaciones entre partes del sistema de una manera clara.</p>
+      <p>Cuando un proyecto es grande, explicarlo sólo con texto puede ser confuso. UML ayuda a reducir esa confusión y a que el equipo trabaje con una misma idea del sistema.</p>
+       
+    </section>
+
+    <section id="definicion">
+      <h2>¿Qué es UML?</h2>
+      <div class="grid">
+        <div class="box">
+          <h3>Definición </h3>
+          <p>UML significa <strong>Unified Modeling Language</strong>, o Lenguaje Unificado de Modelado. No es un lenguaje de programación, sino un lenguaje visual para representar sistemas, sus partes y cómo se relacionan.</p>
+        </div>
+        <div class="box">
+          <h3>¿Para qué sirve?</h3>
+          <p>Sirve para analizar, diseñar y documentar sistemas. También ayuda a que desarrolladores, analistas y clientes entiendan mejor el mismo proyecto sin malentendidos.</p>
+        </div>
+      </div>
+    </section>
+
+     
+
+    <section id="diagramas">
+      <h2>Tipos de diagramas UML</h2>
+      <p>UML tiene varios tipos de diagramas. Entre los mas utilizados estan .</p>
+      <table>
+        <tr>
+          <th>Diagrama</th>
+          <th>Qué muestra</th>
+          <th>Ejemplo realista</th>
+        </tr>
+        <tr>
+          <td>Casos de uso</td>
+          <td>Qué hace el usuario con el sistema.</td>
+          <td>Un estudiante consulta libros, reserva uno y luego lo presta en una biblioteca universitaria.</td>
+        </tr>
+        <tr>
+          <td>Clases</td>
+          <td>Las entidades principales del sistema y sus relaciones.</td>
+          <td>Libro, Usuario, Préstamo y Multa dentro de una biblioteca.</td>
+        </tr>
+        <tr>
+          <td>Secuencia</td>
+          <td>El orden en que ocurren las acciones.</td>
+          <td>El usuario busca un producto, el sistema valida inventario y luego confirma la compra.</td>
+        </tr>
+        <tr>
+          <td>Actividad</td>
+          <td>El flujo paso a paso de un proceso.</td>
+          <td>Registrar pedido, validar pago, preparar envío y entregar.</td>
+        </tr>
+      </table>
+       
+    </section>
+
+    <section id="ejemplo">
+      <h2>Ejemplo práctico</h2>
+      <p>Sistema de biblioteca. El estudiante entra al sistema, busca un libro, verifica si está disponible y solicita el préstamo. Después, el sistema registra el préstamo y fija la fecha de devolución.</p>
+      <p>Con UML, ese mismo proceso puede mostrarse en diferentes diagramas. Un caso de uso explica lo que hace el usuario, un diagrama de clases muestra las entidades y un diagrama de secuencia enseña el orden de interacción entre usuario y sistema.</p>
+       
+    </section>
+
+    <section id="mermaid">
+      <h2>Diagramas de ejemplo </h2>
+      <p>Ejemplos de los distintos diagramas.</p>
+
+      <h3>Diagrama de casos de uso</h3>
+      <div class="mermaid">
+        flowchart LR
+          Estudiante[Estudiante] --> Buscar[Buscar libro]
+          Estudiante --> Reservar[Reservar libro]
+          Estudiante --> Prestar[Solicitar préstamo]
+          Prestar --> Validar{¿Disponible?}
+          Validar -- Sí --> Registrar[Registrar préstamo]
+          Validar -- No --> Avisar[Avisar no disponible]
+      </div>
+
+      <h3>Diagrama de clases</h3>
+      <div class="mermaid">
+        classDiagram
+          class Libro {
+            +String titulo
+            +String autor
+            +bool disponible
+            +prestar()
+            +devolver()
+          }
+          class Usuario {
+            +String nombre
+            +String carnet
+            +solicitarPrestamo()
+          }
+          class Prestamo {
+            +Date fechaSalida
+            +Date fechaVencimiento
+            +registrar()
+          }
+          Usuario --> Prestamo
+          Prestamo --> Libro
+      </div>
+
+      <h3>Diagrama de secuencia</h3>
+      <div class="mermaid">
+        sequenceDiagram
+          actor Estudiante
+          participant Sistema
+          participant Biblioteca
+          Estudiante->>Sistema: Buscar libro
+          Sistema->>Biblioteca: Consultar disponibilidad
+          Biblioteca-->>Sistema: Disponible
+          Sistema-->>Estudiante: Mostrar resultado
+          Estudiante->>Sistema: Solicitar préstamo
+          Sistema->>Biblioteca: Registrar préstamo
+          Biblioteca-->>Sistema: Confirmar
+          Sistema-->>Estudiante: Confirmación
+      </div>
+
+      <h3>Diagrama de actividad</h3>
+      <div class="mermaid">
+        flowchart TD
+          A([Inicio]) --> B[Buscar libro]
+          B --> C{¿Está disponible?}
+          C -- Sí --> D[Registrar préstamo]
+          D --> E[Entregar libro]
+          E --> F([Fin])
+          C -- No --> G[Mostrar no disponible]
+          G --> F
+      </div>
+    </section>
+
+    <section id="ventajas">
+      <h2>Ventajas y límites</h2>
+      <div class="grid">
+        <div class="box">
+          <h3>Ventajas</h3>
+          <ul>
+            <li>Ordena ideas antes de programar.</li>
+            <li>Mejora la comunicación entre equipo técnico y cliente.</li>
+            <li>Ayuda a detectar errores tempranamente.</li>
+            <li>Sirve como documentación del sistema.</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>Límites</h3>
+          <ul>
+            <li>Un diagrama demasiado detallado puede ser difícil de leer.</li>
+            <li>No reemplaza el desarrollo ni las pruebas.</li>
+            <li>Si se usa mal, puede confundir en vez de ayudar.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Uso en proyectos reales</h2>
+      <p>UML se usa en aplicaciones bancarias, sistemas de inventario, plataformas de compra, control académico, aplicaciones móviles y software empresarial. Su valor está en que permite explicar el sistema antes de construirlo y tener una base clara para el desarrollo.</p>
+        </section>
+
+    <section id="conclusion">
+      <h2>Conclusión</h2>
+      <p>UML sigue siendo importante porque convierte ideas complejas en diagramas fáciles de entender. </p>
+      <p>Bien usado, UML mejora el análisis, el diseño y la documentación de cualquier sistema de software.</p>
+    </section>
+
+    <section id="referencias">
+      <h2>Referencias APA</h2>
+      <p>Object Management Group. (2017). <em>About the Unified Modeling Language Specification Version 2.5.1</em>. https://www.omg.org/spec/UML/2.5.1/About-UML/</p>
+      <p>Object Management Group. (s. f.). <em>Unified Modeling Language (UML)</em>. https://www.omg.org/uml/</p>
+      <p>Acosta, P. (2008). <em>UML – a tutorial</em>. Brooklyn College. http://www.sci.brooklyn.cuny.edu/~kopec/uml/uml_tutorial.pdf</p>
+    </section>
+  </main>
+
+  <footer>
+    Ingenieria en Sistemas Julio de 2026
+  </footer>
+</body>
+</html>
